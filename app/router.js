@@ -14,9 +14,15 @@ import { connect } from 'react-redux'
 
 import Loading from './containers/Loading'
 import Login from './containers/Login'
+import Register from './containers/Register'
 import Home from './containers/Home'
 import Account from './containers/Account'
 import Detail from './containers/Detail'
+
+import ProductScreen from './containers/ProductScreen';
+import ProductDetailsScreen from './containers/ProductDetailsScreen';
+import ProductAddScreen from './containers/ProductAddScreen';
+import ProductEditScreen from './containers/ProductEditScreen';
 
 const HomeNavigator = createBottomTabNavigator({
   Home: { screen: Home },
@@ -35,9 +41,20 @@ const MainNavigator = createStackNavigator(
   {
     HomeNavigator: { screen: HomeNavigator },
     Detail: { screen: Detail },
+    Product: ProductScreen,
+    ProductDetails: ProductDetailsScreen,
+    AddProduct: ProductAddScreen,
+    EditProduct: ProductEditScreen,
   },
   {
-    headerMode: 'float',
+    headerMode: 'float',// 'none' remove Home and Account Title
+  }
+)
+
+const UnauthenticatedNavigator = createStackNavigator(
+  {
+    Main: { screen: Login },
+    Register: { screen: Register },
   }
 )
 
@@ -45,6 +62,7 @@ const AppNavigator = createStackNavigator(
   {
     Main: { screen: MainNavigator },
     Login: { screen: Login },
+    Register: { screen: Register },
   },
   {
     headerMode: 'none',
@@ -88,6 +106,8 @@ export const routerMiddleware = createReactNavigationReduxMiddleware(
 
 const App = reduxifyNavigator(AppNavigator, 'root')
 
+const UnApp = reduxifyNavigator(UnauthenticatedNavigator, 'root')
+
 function getActiveRouteName(navigationState) {
   if (!navigationState) {
     return null
@@ -123,9 +143,12 @@ class Router extends PureComponent {
 
   render() {
     const { app, dispatch, router } = this.props
+    const { login } = app
     if (app.loading) return <Loading />
-
-    return <App dispatch={dispatch} state={router} />
+    if (login) 
+      return <App dispatch={dispatch} state={router} />
+    else
+      return <UnApp dispatch={dispatch} state={router} />
   }
 }
 

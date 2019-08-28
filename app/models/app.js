@@ -1,4 +1,4 @@
-import { createAction, NavigationActions, Storage } from '../utils'
+import { createAction, NavigationActions, Storage, graph } from '../utils'
 import * as authService from '../services/auth'
 
 export default {
@@ -26,6 +26,10 @@ export default {
       }
       yield put(createAction('updateState')({ login, fetching: false }))
       Storage.set('login', login)
+    },
+    *queryGraph({ payload }, { call, put }) {
+      const login = yield call(graph, payload.ql)
+      console.log(login)
     },
     *logout(action, { call, put }) {
       yield call(Storage.set, 'login', false)
