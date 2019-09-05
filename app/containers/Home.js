@@ -1,23 +1,31 @@
 import React, { Component } from 'react'
-import { NativeModules, StyleSheet, StatusBar, Image } from 'react-native'
-import {
-  Header, Left, Container,  Button, Body, Title, Right, Icon, Text, Content } from "native-base";
+import { NativeModules, StyleSheet, Text, Image, View } from 'react-native'
+import { Button, Rating, Icon } from "react-native-elements";
 import { connect } from 'react-redux'
-
-// import { Button } from '../components'
-
+import SplashScreen from 'react-native-splash-screen'
+import LinearGradient from 'react-native-linear-gradient';
 import { NavigationActions } from '../utils'
 
 @connect()
 class Home extends Component {
   static navigationOptions = {
     tabBarLabel: '速记',
-    tabBarIcon: ({ focused, tintColor }) => (
-      <Image
-        style={[styles.icon, { tintColor: focused ? tintColor : 'gray' }]}
-        source={require('../images/house.png')}
+    tabBarIcon: ({ focused, tintColor, horizontal }) => (
+      <Icon
+        name="home"
+        type="font-awesome"
+        color={ focused ? tintColor : 'gray' }
+        size={horizontal ? 20 : 26}
+        style={[styles.icon, ]}
       />
     ),
+
+  }
+
+  componentDidMount() {
+    // do stuff while splash screen is shown
+      // After having done stuff (such as async tasks) hide the splash screen
+      SplashScreen.hide();
   }
 
   gotoDetail = () => {
@@ -29,51 +37,121 @@ class Home extends Component {
 
   render() {
     return (
-      <Container style={styles.container}>
-        <StatusBar translucent={false}/>
-        <Header
-          noShadow
-          iosBarStyle={"dark-content"}
-          androidStatusBarColor={"#fff"}
-          style={{ borderBottomWidth: 1 }}>
-          <Left style={styles.headerLeft}>
-            <Button transparent onPress={() => this.props.navigation.openDrawer()}>
-              <Icon name="menu" style={{ color: "#000" }}/>
-            </Button>
-          </Left>
-          <Body style={styles.headerBody}>
-          <Title style={styles.textBody}>当前在背</Title>
-          </Body>
-          <Right style={styles.headerRight}/>
-        </Header>
+      <View style={styles.container}>
+      
+        <Button
+              title="Goto 单词"
+              onPress={this.gotoDetail}
+              titleStyle={{ fontWeight: 'bold', fontSize: 18 }}
+              ViewComponent={LinearGradient}
+              linearGradientProps={{
+                colors: ['#FF9800', '#F44336'],
+                start: { x:1, y: 0 },
+                end: { x: 0.2, y: 0 },
+              }}
+              buttonStyle={{
+                borderWidth: 0,
+                borderColor: 'transparent',
+                borderRadius: 20,
+              }}
+              containerStyle={{ marginVertical: 10, height: 40, width: 200 }}
+              icon={{
+                name: 'arrow-right',
+                type: 'font-awesome',
+                size: 15,
+                color: 'white',
+              }}
+              iconRight
+              iconContainerStyle={{ marginLeft: 10, marginRight: -10 }}
+            />
         
-        <Content>
-          {/* <Button text="Goto Detail" onPress={this.gotoDetail} /> */}
-          <Button transparent onPress={this.gotoDetail}>
-            <Text>Goto 单词</Text>
-          </Button>
-          <Button transparent onPress={this.gotoProduct}>
-            <Text>Goto Product</Text>
-          </Button>
-          <Text style={{ alignSelf: "center", marginTop: 10}}>背单词主页</Text>
-          <Button
-            onPress={() => NativeModules.ActivityStarter.navigateToExample()}
-          >
-           <Text>Start example activity</Text>
-          </Button>
-          <Button
-            onPress={() => NativeModules.ActivityStarter.dialNumber('+1 (234) 567-8910')}
-            >
-            <Text>Dial +1 (234) 567-8910</Text>
-           </Button>
+        <Button
+                title="Goto Product"
+                onPress={this.gotoProduct}
+                icon={{
+                  name: 'home',
+                  type: 'font-awesome',
+                  size: 15,
+                  color: 'white',
+                }}
+                iconContainerStyle={{ marginRight: 10 }}
+                titleStyle={{ fontWeight: '700' }}
+                buttonStyle={{
+                  backgroundColor: 'rgba(90, 154, 230, 1)',
+                  borderColor: 'transparent',
+                  borderWidth: 0,
+                  borderRadius: 30,
+                }}
+                containerStyle={{ width: 130 }}
+              />
+              <Button
+                title="打开原生界面"
+                onPress={() => NativeModules.ActivityStarter.navigateToExample()}
+                icon={{
+                  name: 'user',
+                  type: 'font-awesome',
+                  size: 15,
+                  color: 'white',
+                }}
+                iconRight
+                iconContainerStyle={{ marginLeft: 10 }}
+                titleStyle={{ fontWeight: '700' }}
+                buttonStyle={{
+                  backgroundColor: 'rgba(199, 43, 98, 1)',
+                  borderColor: 'transparent',
+                  borderWidth: 0,
+                  borderRadius: 30,
+                }}
+                containerStyle={{ marginVertical: 10, height: 40, width: 200 }}
+              />
+              <Button
+                title="打开原生播放器"
+                onPress={() => NativeModules.ActivityStarter.navigateToPlayer()}
+                buttonStyle={{ backgroundColor: 'rgba(39, 39, 39, 1)' }}
+                containerStyle={{ height: 40 }}
+                titleStyle={{ color: 'white', marginHorizontal: 20 }}
+              />
+              <Button
+                title="打开嵌入视频的原生页面"
+                onPress={() => NativeModules.ActivityStarter.navigateToVideo()}
+                containerStyle={{ marginVertical: 10, height: 40 }}
+                buttonStyle={{ backgroundColor: 'rgba(78, 116, 289, 1)' }}
+                titleStyle={{ color: 'white', marginHorizontal: 20 }}
+              />
 
-          <Button
+              <Button
+                title="调用拨号程序"
+                onPress={() => NativeModules.ActivityStarter.dialNumber('+1 (234) 567-8910')}
+                buttonStyle={{ backgroundColor: 'rgba(127, 220, 103, 1)' }}
+                containerStyle={{ height: 40 }}
+                titleStyle={{ color: 'white', marginHorizontal: 20 }}
+              />
+              <Button
+                title="提示升级"
+                onPress={() => NativeModules.ActivityStarter.navigateToUpdate()}
+                buttonStyle={{ backgroundColor: 'rgba(214, 61, 57, 1)' }}
+                containerStyle={{ marginVertical: 10, height: 40 }}
+                titleStyle={{ color: 'white', marginHorizontal: 20 }}
+              />
+          {/* <Button text="Goto Detail" onPress={this.gotoDetail} /> */}
+
+
+          <Text style={{ alignSelf: "center", marginTop: 10}}>背单词主页</Text>
+          <Rating
+              showRating
+              type="star"
+              fractions={1}
+              startingValue={3.6}
+              readonly
+              imageSize={40}
+              style={{ paddingVertical: 10 }}
+            />
+          <Button title="Copy to clipboard"
             onPress={() => NativeModules.Clipboard.setString("Hello from JavaScript!")}
             >
-            <Text>Copy to clipboard</Text>
            </Button>
-        </Content>
-      </Container>
+
+      </View>
     )
   }
 }

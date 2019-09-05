@@ -39,8 +39,8 @@ export function unsetUserLocally() {
 })()
 
 export const login = async (param) => {
-  await delay(200)
-  const { username, password} = param
+  await delay(1000)
+/*   const { username, password} = param
   let response = await post('/auth/local',{body: {"identifier": username, "password": password}})
   // let response = await post('http://192.168.0.51:8080/api/authenticate',{body: {"username": "admin", "password": "admin", "rememberMe": false}})
   console.log(response)
@@ -52,7 +52,7 @@ export const login = async (param) => {
     const user = response.body.user
     
     setUserLocally(token, user)
-  }
+  } */
 
   return true
 }

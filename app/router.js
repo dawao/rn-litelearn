@@ -4,9 +4,11 @@ import {
   createStackNavigator,
   createBottomTabNavigator,
   NavigationActions,
+  createSwitchNavigator,
+  SwitchActions
 } from 'react-navigation'
 import {
-  reduxifyNavigator,
+  createReduxContainer,
   createReactNavigationReduxMiddleware,
   createNavigationReducer,
 } from 'react-navigation-redux-helpers'
@@ -14,19 +16,26 @@ import { connect } from 'react-redux'
 
 import Loading from './containers/Loading'
 import Login from './containers/Login'
+import LoginScreen from './containers/LoginScreen2'
+import LoadingScreen from './containers/LoadingScreen' 
 import Register from './containers/Register'
+import Setting from './containers/setting'
 import Home from './containers/Home'
 import Account from './containers/Account'
 import Detail from './containers/Detail'
 
-import ProductScreen from './containers/ProductScreen';
-import ProductDetailsScreen from './containers/ProductDetailsScreen';
-import ProductAddScreen from './containers/ProductAddScreen';
-import ProductEditScreen from './containers/ProductEditScreen';
+import ProductScreen from './containers/ProductScreen'
+import ProductDetailsScreen from './containers/ProductDetailsScreen'
+import ProductAddScreen from './containers/ProductAddScreen'
+import ProductEditScreen from './containers/ProductEditScreen'
+
 
 const HomeNavigator = createBottomTabNavigator({
   Home: { screen: Home },
   Account: { screen: Account },
+}, {
+  swipeEnabled: true,
+  animationEnabled: true,
 })
 
 HomeNavigator.navigationOptions = ({ navigation }) => {
@@ -47,24 +56,30 @@ const MainNavigator = createStackNavigator(
     EditProduct: ProductEditScreen,
   },
   {
-    headerMode: 'float',// 'none' remove Home and Account Title
+    headerMode: 'none'//'float',// 'none' remove Home and Account Title
   }
 )
 
 const UnauthenticatedNavigator = createStackNavigator(
   {
-    Main: { screen: Login },
-    Register: { screen: Register },
-  }
-)
-
-const AppNavigator = createStackNavigator(
-  {
-    Main: { screen: MainNavigator },
+    LoginScreen: { screen: LoginScreen },
     Login: { screen: Login },
+    Setting: { screen: Setting },
     Register: { screen: Register },
   },
   {
+    headerMode: 'none',
+  }
+)
+
+const AppNavigator = createSwitchNavigator(
+  {
+    Main: { screen: MainNavigator },
+    UnApp: { screen: UnauthenticatedNavigator },
+    AuthLoading: LoadingScreen,
+  },
+  {
+    initialRouteName: 'AuthLoading',
     headerMode: 'none',
     mode: 'modal',
     navigationOptions: {
@@ -100,13 +115,13 @@ const AppNavigator = createStackNavigator(
 export const routerReducer = createNavigationReducer(AppNavigator)
 
 export const routerMiddleware = createReactNavigationReduxMiddleware(
-  'root',
-  state => state.router
+  state => state.router,
+  'root'
 )
 
-const App = reduxifyNavigator(AppNavigator, 'root')
+const App = createReduxContainer(AppNavigator, 'root')
 
-const UnApp = reduxifyNavigator(UnauthenticatedNavigator, 'root')
+// const UnApp = createReduxContainer(UnauthenticatedNavigator, 'root')
 
 function getActiveRouteName(navigationState) {
   if (!navigationState) {
@@ -143,12 +158,11 @@ class Router extends PureComponent {
 
   render() {
     const { app, dispatch, router } = this.props
-    const { login } = app
+    //const { login } = app
     if (app.loading) return <Loading />
-    if (login) 
+    //if (login) 
       return <App dispatch={dispatch} state={router} />
-    else
-      return <UnApp dispatch={dispatch} state={router} />
+    //return <UnApp dispatch={dispatch} state={router} />
   }
 }
 

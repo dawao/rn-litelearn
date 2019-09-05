@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     padding: 5,
     borderBottomWidth: 2,
-    borderBottomColor: '#CCCCCC',
+    borderBottomColor: 'red',
   },
   activity: {
     position: 'absolute',

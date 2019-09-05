@@ -3,7 +3,9 @@ import { StyleSheet, View, Image, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
 import { Button, Body, Container, Header, Content, Form, Footer, Label, Left, Icon, Item, Input, Right, Spinner,Text } from 'native-base'
 
-import { Touchable } from '../components'
+import SplashScreen from 'react-native-splash-screen'
+
+// import { Touchable } from '../components'
 
 import { createAction, NavigationActions } from '../utils'
 
@@ -21,6 +23,12 @@ class Login extends Component {
         password: "123456",
         error: ""
     }
+  }
+
+  componentDidMount() {
+    // do stuff while splash screen is shown
+      // After having done stuff (such as async tasks) hide the splash screen
+      SplashScreen.hide();
   }
 
   onLogin = () => {

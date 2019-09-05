@@ -2,7 +2,11 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Image, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
 
-import { Button, Touchable } from '../components'
+import {
+  Input,
+  Icon,
+  Button,
+} from 'react-native-elements';
 
 import { createAction, NavigationActions } from '../utils'
 
@@ -27,11 +31,77 @@ class Register extends Component {
   render() {
     const { fetching } = this.props
     return (
+
+
       <View style={styles.container}>
         {fetching ? (
           <ActivityIndicator />
         ) : (
-          <Button text="gotoLogin" onPress={this.gotoLogin} />
+          <View>
+          <View
+          style={[
+            styles.headerContainer,
+            { backgroundColor: '#616389', marginTop: 20 },
+          ]}
+        >
+          <Icon color="white" name="input" size={62} />
+          <Text style={styles.heading}>Inputs</Text>
+        </View>
+        <View style={{ alignItems: 'center', marginBottom: 16 }}>
+          <Input
+            containerStyle={{ width: '90%' }}
+            placeholder="Input with label"
+            label="LABEL"
+            labelStyle={{ marginTop: 16 }}
+          />
+          <Input
+            containerStyle={styles.inputContainerStyle}
+            placeholder="Simple input"
+          />
+          <Input
+            leftIcon={
+              <Icon
+                name="map-marker"
+                type="font-awesome"
+                color="#86939e"
+                size={25}
+              />
+            }
+            leftIconContainerStyle={{ marginLeft: 0, marginRight: 10 }}
+            containerStyle={styles.inputContainerStyle}
+            placeholder="Input with left icon"
+          />
+          <Input
+            rightIcon={
+              <Icon
+                name="chevron-right"
+                type="entypo"
+                color="#86939e"
+                size={25}
+              />
+            }
+            containerStyle={styles.inputContainerStyle}
+            placeholder="Input with right icon"
+          />
+          <Input
+            containerStyle={styles.inputContainerStyle}
+            placeholder="Input with error message"
+            errorMessage="Invalid input"
+          />
+          <Input
+            containerStyle={[styles.inputContainerStyle]}
+            placeholder="Shake input"
+            ref={ref => (this.shakeInput = ref)}
+            rightIcon={
+              <Button
+                title="Shake"
+                onPress={() => this.shakeInput && this.shakeInput.shake()}
+              />
+            }
+            errorMessage="Shake me on error !"
+          />
+          <Button title="gotoLogin" onPress={this.gotoLogin} />
+        </View> </View>
         )}
         {!fetching && (
           <Touchable style={styles.close} onPress={this.onClose}>
@@ -51,6 +121,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  headerContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 40,
+    backgroundColor: '#B46486',
   },
   close: {
     position: 'absolute',
