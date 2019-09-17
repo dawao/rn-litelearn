@@ -4,6 +4,9 @@ import android.app.Application;
 
 import com.dvastarter.activity.ActivityStarterReactPackage;
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
+import com.horcrux.svg.SvgPackage;
+import com.rssignaturecapture.RSSignatureCapturePackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.devstepbcn.wifi.AndroidWifiPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
@@ -45,6 +48,9 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new ActivityStarterReactPackage(),
           new MainReactPackage(),
+            new AsyncStoragePackage(),
+            new SvgPackage(),
+            new RSSignatureCapturePackage(),
             new LinearGradientPackage(),
             new AndroidWifiPackage(),
             new SplashScreenReactPackage(),

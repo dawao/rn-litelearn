@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Image, ActivityIndicator } from 'react-native'
+import { StyleSheet, View, Image,  Text, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
-import { Button, Body, Container, Header, Content, Form, Footer, Label, Left, Icon, Item, Input, Right, Spinner,Text } from 'native-base'
-
+import { Input, Button, Icon } from 'react-native-elements';
 import SplashScreen from 'react-native-splash-screen'
 
 // import { Touchable } from '../components'
@@ -51,38 +50,19 @@ class Login extends Component {
         {fetching ? (
           <ActivityIndicator />
         ) : (
-          <Container>
-          <Header noShadow style={{ backgroundColor: "white" }}>
-            <Left style={{ flex: 1 }} />
-            <Body style={{ flex: 1 }}>
-              <Icon
-                name="logo-twitter"
-                style={{ alignSelf: "center", color: "#4286f4" }}
-              />
-            </Body>
-            <Right style={{ flex: 1 }}>
-              <Button transparent onPress={this.gotoRegister}>
-                <Text style={{ color: "#4286f4" }}>注册</Text>
-              </Button>
-              <Button transparent>
-                <Icon name="more" style={{ color: "#4286f4" }} />
-              </Button>
-            </Right>
-          </Header>
-          <Content style={styles.content}>
+
+
+          <View style={styles.content}>
             <Text style={styles.heading}></Text>
-            <Form>
-              <Item stackedLabel last>
-                <Label>请输入手机号或学号</Label>
+
+                <Text>请输入手机号或学号</Text>
                 <Input placeholder="Username" onChangeText={(username) => this.setState({ username })}/>
-              </Item>
-              <Item stackedLabel last>
-                <Label>请输入密码</Label>
+
+                <Text>请输入密码</Text>
                 <Input secureTextEntry={true} onChangeText={(password) => this.setState({ password })}/>
-              </Item>
-            </Form>
-            <Container style={styles.topMargin}>
-            {this.props.loginStatus === "ongoing" ? <Spinner /> : null}
+
+            <View style={styles.topMargin}>
+            {this.props.loginStatus === "ongoing" ? <ActivityIndicator /> : null}
             {this.props.loginStatus === "failed" ? (
               <Text style={{ color: "#f92a3f" }}>登录失败</Text>
             ) : null}
@@ -90,10 +70,10 @@ class Login extends Component {
               full
               style={{ backgroundColor: "#4286f4" }}
               onPress={this.onLogin}
+              title={'登录'}
             >
-              <Text>登录</Text>
             </Button>
-            </Container>
+            </View>
             <Button
               transparent
               style={{
@@ -102,18 +82,12 @@ class Login extends Component {
                 width: "50%",
                 alignSelf: "center"
               }}
+              title={'忘记密码'}
             >
-              <Text
-                style={{ textAlign: "center", fontSize: 14, color: "#AAA" }}
-              >
-                忘记密码?
-              </Text>
             </Button>
-          </Content>
-          <Footer >
+          </View>
 
-          </Footer>
-          </Container>
+
         )}
         {/* !fetching && (
           <Touchable style={styles.close} onPress={this.onClose}>

@@ -15,11 +15,18 @@ class Home extends Component {
         name="home"
         type="font-awesome"
         color={ focused ? tintColor : 'gray' }
-        size={horizontal ? 20 : 26}
+        size={horizontal ? 50 : 56}
         style={[styles.icon, ]}
       />
     ),
-
+    tabBarOptions:{
+      labelStyle: {
+        fontSize: 22,
+      },
+      style : {
+        height: 80,
+      },
+    }
   }
 
   componentDidMount() {

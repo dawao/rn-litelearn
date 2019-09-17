@@ -3,6 +3,7 @@ package com.dvastarter.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Environment;
 
 import androidx.annotation.NonNull;
 
@@ -60,6 +61,44 @@ final class ActivityStarterModule extends ReactContextBaseJavaModule {
       Intent intent = new Intent(activity, SimplePlayer.class);
       activity.startActivity(intent);
     }
+  }
+
+
+  @ReactMethod
+  void parseImage(@NonNull Callback callback) {
+    String root = Environment.getExternalStorageDirectory().toString();
+    callback.invoke(root + "/saved_signature/signature.png");
+/*    // the directory where the signature will be saved
+    File myDir = new File(root + "/saved_signature");
+
+    // make the directory if it does not exist yet
+    if (!myDir.exists()) {
+      myDir.mkdirs();
+    }
+      String TESSBASE_PATH= Environment.getExternalStorageDirectory().getPath();
+      final String DEFAULT_LANGUAGE = "eng";
+    // the directory where the signature will be saved
+    File iDir = new File(TESSBASE_PATH + "/tessdata");
+
+    // make the directory if it does not exist yet
+    if (!iDir.exists()) {
+      iDir.mkdirs();
+    }
+
+    // set the file name of your choice
+    String fname = "signature.png";
+
+    // in our case, we delete the previous file, you can remove this
+    File file = new File(myDir, fname);
+    TessBaseAPI tessBaseAPI = new TessBaseAPI();
+    System.out.println(myDir.getAbsolutePath());
+
+    tessBaseAPI.init(TESSBASE_PATH, DEFAULT_LANGUAGE);//传入训练文件目录和训练文件
+    tessBaseAPI.setPageSegMode(TessBaseAPI.PageSegMode.PSM_SINGLE_LINE);
+    tessBaseAPI.setVariable(TessBaseAPI.VAR_SAVE_BLOB_CHOICES, TessBaseAPI.VAR_TRUE);
+    tessBaseAPI.setImage(file);
+    String text = tessBaseAPI.getUTF8Text();
+    callback.invoke(text);*/
   }
 
   @ReactMethod

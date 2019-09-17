@@ -140,6 +140,12 @@ android {
       pickFirst 'lib/x86_64/libijksdl.so'
       pickFirst 'lib/x86_64/libijkplayer.so'
       pickFirst 'lib/x86_64/libijkffmpeg.so'
+      pickFirst 'lib/armeabi-v7a/libijkplayer.so'
+      pickFirst 'lib/armeabi-v7a/libijksdl.so'
+      pickFirst 'lib/armeabi-v7a/libijkffmpeg.so'
+      pickFirst 'lib/x86/libijkplayer.so'
+      pickFirst 'lib/x86/libijksdl.so'
+      pickFirst 'lib/x86/libijkffmpeg.so'
     }
     buildTypes {
         release {
@@ -164,6 +170,9 @@ android {
 }
 
 dependencies {
+    implementation project(':@react-native-community_async-storage')
+    implementation project(':react-native-svg')
+    implementation project(':react-native-signature-capture')
     implementation project(':react-native-linear-gradient')
     implementation project(':react-native-android-wifi')
     implementation project(':react-native-splash-screen')

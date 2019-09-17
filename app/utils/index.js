@@ -1,6 +1,6 @@
 import { GraphQLClient } from 'graphql-request'
 
-import { AsyncStorage } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage';
 
 export { NavigationActions, StackActions } from 'react-navigation'
 

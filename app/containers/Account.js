@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Image, FlatList } from 'react-native'
 import { connect } from 'react-redux'
-import { Col, Row, Grid } from 'react-native-easy-grid';
 import { Button, ListItem, Icon } from "react-native-elements";
 
 import { createAction, NavigationActions } from '../utils'
@@ -47,10 +46,18 @@ class Account extends Component {
         name="user"
         type="font-awesome"
         color={ focused ? tintColor : 'gray' }
-        size={horizontal ? 20 : 26}
+        size={horizontal ? 50 : 56}
         style={[styles.icon, ]}
       />
     ),
+    tabBarOptions:{
+      labelStyle: {
+        fontSize: 22,
+      },
+      style : {
+        height: 80,
+      },
+    }
   }
 
   /* <Image
@@ -69,16 +76,14 @@ class Account extends Component {
     const { login } = this.props
     return (
       <View style={styles.container}>
-        <Grid>
-         <Col size={1}>        
-         <FlatList
+    
+      <View style={styles.list}>
+        <FlatList
           data={list1}
           keyExtractor={a => a.title}
           renderItem={renderRow}
-          />
-         </Col>
-         <Col size={3}></Col>
-        </Grid>
+        />
+      </View>
         {login ? (
           <Button title="退出系统" onPress={this.logout} />
         ) : (
@@ -98,6 +103,12 @@ const styles = StyleSheet.create({
   icon: {
     width: 32,
     height: 32,
+  },
+  list: {
+    marginTop: 20,
+    borderTopWidth: 1,
+    backgroundColor: '#fff',
+    width: '100%',
   },
 })
 
