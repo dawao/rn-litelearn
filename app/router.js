@@ -21,6 +21,7 @@ import LoadingScreen from './containers/LoadingScreen'
 import Register from './containers/Register'
 import Setting from './containers/setting'
 import Home from './containers/Home'
+import Review from './containers/Review'
 import Account from './containers/Account'
 import Detail from './containers/Detail'
 
@@ -49,6 +50,7 @@ HomeNavigator.navigationOptions = ({ navigation }) => {
 const MainNavigator = createStackNavigator(
   {
     HomeNavigator: { screen: HomeNavigator },
+    Review: { screen: Review },
     Detail: { screen: Detail },
     Product: ProductScreen,
     ProductDetails: ProductDetailsScreen,

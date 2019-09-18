@@ -9,7 +9,7 @@ import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { Input, Button, Icon } from 'react-native-elements';
 
 import { NavigationActions, createAction } from '../utils'
-
+import { Pie } from '../components'
 
 /* const GET_PRODUCTS = `
   query {
@@ -147,7 +147,17 @@ _onDragEvent() {
               </TouchableHighlight>
 
           </View>
-
+          <View>
+            <Pie
+              radius={50}
+              innerRadius={45}
+              series={[20,30]}
+              colors={['#f00','#0f0']}
+              backgroundColor='#ddd' />
+            <View style={styles.gauge}>
+              <Text style={styles.gaugeText}>60%</Text>
+            </View>
+          </View>
           <AnimatedCircularProgress
             size={200}
             width={20}
@@ -192,17 +202,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  gauge: {
+    position: 'absolute',
+    width: 100,
+    height: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   signature: {
     flex: 1,
     borderColor: '#000033',
     borderWidth: 1,
     width: '100%'
-},
-buttonStyle: {
-    flex: 1, justifyContent: "center", alignItems: "center", height: 50,
-    backgroundColor: "#eeeeee",
-    margin: 10
-}
+  },
+  buttonStyle: {
+      flex: 1, justifyContent: "center", alignItems: "center", height: 50,
+      backgroundColor: "#eeeeee",
+      margin: 10
+  }
 })
 
 export default Detail

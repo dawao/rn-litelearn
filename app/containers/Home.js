@@ -34,7 +34,9 @@ class Home extends Component {
       // After having done stuff (such as async tasks) hide the splash screen
       SplashScreen.hide();
   }
-
+  gotoReview = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'Review' }))
+  }
   gotoDetail = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }))
   }
@@ -73,73 +75,73 @@ class Home extends Component {
             />
         
         <Button
-                title="Goto Product"
-                onPress={this.gotoProduct}
-                icon={{
-                  name: 'home',
-                  type: 'font-awesome',
-                  size: 15,
-                  color: 'white',
-                }}
-                iconContainerStyle={{ marginRight: 10 }}
-                titleStyle={{ fontWeight: '700' }}
-                buttonStyle={{
-                  backgroundColor: 'rgba(90, 154, 230, 1)',
-                  borderColor: 'transparent',
-                  borderWidth: 0,
-                  borderRadius: 30,
-                }}
-                containerStyle={{ width: 130 }}
-              />
-              <Button
-                title="打开原生界面"
-                onPress={() => NativeModules.ActivityStarter.navigateToExample()}
-                icon={{
-                  name: 'user',
-                  type: 'font-awesome',
-                  size: 15,
-                  color: 'white',
-                }}
-                iconRight
-                iconContainerStyle={{ marginLeft: 10 }}
-                titleStyle={{ fontWeight: '700' }}
-                buttonStyle={{
-                  backgroundColor: 'rgba(199, 43, 98, 1)',
-                  borderColor: 'transparent',
-                  borderWidth: 0,
-                  borderRadius: 30,
-                }}
-                containerStyle={{ marginVertical: 10, height: 40, width: 200 }}
-              />
-              <Button
-                title="打开原生播放器"
-                onPress={() => NativeModules.ActivityStarter.navigateToPlayer()}
-                buttonStyle={{ backgroundColor: 'rgba(39, 39, 39, 1)' }}
-                containerStyle={{ height: 40 }}
-                titleStyle={{ color: 'white', marginHorizontal: 20 }}
-              />
-              <Button
-                title="打开嵌入视频的原生页面"
-                onPress={() => NativeModules.ActivityStarter.navigateToVideo()}
-                containerStyle={{ marginVertical: 10, height: 40 }}
-                buttonStyle={{ backgroundColor: 'rgba(78, 116, 289, 1)' }}
-                titleStyle={{ color: 'white', marginHorizontal: 20 }}
-              />
+            title="Goto Product"
+            onPress={this.gotoProduct}
+            icon={{
+              name: 'home',
+              type: 'font-awesome',
+              size: 15,
+              color: 'white',
+            }}
+            iconContainerStyle={{ marginRight: 10 }}
+            titleStyle={{ fontWeight: '700' }}
+            buttonStyle={{
+              backgroundColor: 'rgba(90, 154, 230, 1)',
+              borderColor: 'transparent',
+              borderWidth: 0,
+              borderRadius: 30,
+            }}
+            containerStyle={{ width: 130 }}
+          />
+          <Button
+            title="打开原生界面"
+            onPress={() => NativeModules.ActivityStarter.navigateToExample()}
+            icon={{
+              name: 'user',
+              type: 'font-awesome',
+              size: 15,
+              color: 'white',
+            }}
+            iconRight
+            iconContainerStyle={{ marginLeft: 10 }}
+            titleStyle={{ fontWeight: '700' }}
+            buttonStyle={{
+              backgroundColor: 'rgba(199, 43, 98, 1)',
+              borderColor: 'transparent',
+              borderWidth: 0,
+              borderRadius: 30,
+            }}
+            containerStyle={{ marginVertical: 10, height: 40, width: 200 }}
+          />
+          <Button
+            title="打开原生播放器"
+            onPress={() => NativeModules.ActivityStarter.navigateToPlayer()}
+            buttonStyle={{ backgroundColor: 'rgba(39, 39, 39, 1)' }}
+            containerStyle={{ height: 40 }}
+            titleStyle={{ color: 'white', marginHorizontal: 20 }}
+          />
+          <Button
+            title="打开嵌入视频的原生页面"
+            onPress={() => NativeModules.ActivityStarter.navigateToVideo()}
+            containerStyle={{ marginVertical: 10, height: 40 }}
+            buttonStyle={{ backgroundColor: 'rgba(78, 116, 289, 1)' }}
+            titleStyle={{ color: 'white', marginHorizontal: 20 }}
+          />
 
-              <Button
-                title="调用拨号程序"
-                onPress={() => NativeModules.ActivityStarter.dialNumber('+1 (234) 567-8910')}
-                buttonStyle={{ backgroundColor: 'rgba(127, 220, 103, 1)' }}
-                containerStyle={{ height: 40 }}
-                titleStyle={{ color: 'white', marginHorizontal: 20 }}
-              />
-              <Button
-                title="提示升级"
-                onPress={() => NativeModules.ActivityStarter.navigateToUpdate()}
-                buttonStyle={{ backgroundColor: 'rgba(214, 61, 57, 1)' }}
-                containerStyle={{ marginVertical: 10, height: 40 }}
-                titleStyle={{ color: 'white', marginHorizontal: 20 }}
-              />
+          <Button
+            title="开始复习"
+            onPress={this.gotoReview}
+            buttonStyle={{ backgroundColor: 'rgba(127, 220, 103, 1)' }}
+            containerStyle={{ height: 40 }}
+            titleStyle={{ color: 'white', marginHorizontal: 20 }}
+          />
+          <Button
+            title="提示升级"
+            onPress={() => NativeModules.ActivityStarter.navigateToUpdate()}
+            buttonStyle={{ backgroundColor: 'rgba(214, 61, 57, 1)' }}
+            containerStyle={{ marginVertical: 10, height: 40 }}
+            titleStyle={{ color: 'white', marginHorizontal: 20 }}
+          />
           {/* <Button text="Goto Detail" onPress={this.gotoDetail} /> */}
 
 
