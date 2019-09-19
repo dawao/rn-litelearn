@@ -22,6 +22,7 @@ import Register from './containers/Register'
 import Setting from './containers/setting'
 import Home from './containers/Home'
 import Review from './containers/Review'
+import PreTest from './containers/PreTest'
 import Account from './containers/Account'
 import Detail from './containers/Detail'
 
@@ -50,6 +51,7 @@ HomeNavigator.navigationOptions = ({ navigation }) => {
 const MainNavigator = createStackNavigator(
   {
     HomeNavigator: { screen: HomeNavigator },
+    PreTest: { screen: PreTest },
     Review: { screen: Review },
     Detail: { screen: Detail },
     Product: ProductScreen,
@@ -58,6 +60,7 @@ const MainNavigator = createStackNavigator(
     EditProduct: ProductEditScreen,
   },
   {
+    initialRouteName: 'PreTest',
     headerMode: 'none'//'float',// 'none' remove Home and Account Title
   }
 )
