@@ -1,6 +1,7 @@
 import { GraphQLClient } from 'graphql-request'
 import { Dimensions, PixelRatio, Platform, Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import server from '../config/server';
 
 export { NavigationActions, StackActions } from 'react-navigation'
 
@@ -87,7 +88,7 @@ const px2dp = function px2dp(px) {
 global.px2dp = px2dp;
 
 
-export const host = 'http://192.168.0.51:1337'
+const host = server.host;
 
 export const post = async (uri , opt) => {
   

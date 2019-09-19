@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import SplashScreen from 'react-native-splash-screen'
 import LinearGradient from 'react-native-linear-gradient';
 import { NavigationActions } from '../utils'
+import colors from '../config/colors';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -188,7 +189,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#F1F1F1',
+    backgroundColor: colors.grey1,
 
   },
   icon: {
