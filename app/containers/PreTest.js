@@ -24,14 +24,15 @@ class PreTest extends Component {
   gotoReview = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'Review' }))
   }
-  gotoDetail = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }))
+  gotoHome = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'Home' }))
   }
-  gotoProduct = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'Product' }))
+  gotoLogin = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'LoginScreen' }))
   }
 
   render() {
+
     return (
       <View style={styles.container}>
         <View
@@ -90,15 +91,15 @@ class PreTest extends Component {
         <View
             style={{
               flex: 1,
-              marginTop: 40,
+              marginTop: 30,
               width: SCREEN_WIDTH - 80,
               marginLeft: 40,
-              paddingTop: 20,
+              justifyContent: 'flex-end',
             }}
           >
           <Button
             title="水平测试"
-            onPress={this.gotoDetail}
+            onPress={this.gotoReview}
             titleStyle={{ fontWeight: 'bold', fontSize: 38 }}
             ViewComponent={LinearGradient}
             linearGradientProps={{
@@ -110,7 +111,7 @@ class PreTest extends Component {
               borderWidth: 0,
               borderColor: 'transparent',
               borderRadius: 50,
-              width: SCREEN_WIDTH - 180,
+              width: SCREEN_WIDTH - 120,
               height: 80,
             }}
             containerStyle={{ marginVertical: 10, width: 200 }}
@@ -121,18 +122,19 @@ class PreTest extends Component {
               flex: 1,
               width: SCREEN_WIDTH - 80,
               marginLeft: 40,
+              justifyContent:  'center',
             }}
           >
             <Button
               title="开始学习"
-              onPress={() => NativeModules.ActivityStarter.navigateToExample()}
+              onPress={this.gotoHome}
               titleStyle={{ fontWeight: '700', fontSize: 38  }}
               buttonStyle={{
                 backgroundColor: 'rgba(127, 220, 103, 1)',
                 borderColor: 'transparent',
                 borderWidth: 0,
                 borderRadius: 50,
-                width: SCREEN_WIDTH - 180,
+                width: SCREEN_WIDTH - 120,
                 height: 80,
               }}
               containerStyle={{ marginVertical: 10,  width: 200 }}
@@ -148,14 +150,14 @@ class PreTest extends Component {
           >
           <Button
               title="退出"
-              onPress={this.gotoProduct}
+              onPress={this.gotoLogin}
               titleStyle={{ fontWeight: '700', fontSize: 38  }}
               buttonStyle={{
                 backgroundColor: 'rgba(90, 154, 230, 1)',
                 borderColor: 'transparent',
                 borderWidth: 0,
                 borderRadius: 50,
-                width: SCREEN_WIDTH - 180,
+                width: SCREEN_WIDTH - 120,
                 height: 80,
               }}
               containerStyle={{ width: 130 }}
@@ -166,7 +168,7 @@ class PreTest extends Component {
                 color: 'white',
               }}
               iconRight
-              iconContainerStyle={{ marginLeft: 10, marginRight: -10 }}
+              iconContainerStyle={{ marginVertical: 10, marginLeft: 10, marginRight: -10 }}
             /></View>
 
       </View>
@@ -174,15 +176,7 @@ class PreTest extends Component {
   }
 }
 
-// const dp2px = dp=>PixelRatio.getPixelSizeForLayoutSize(dp);
-// const px2dp = px=>PixelRatio.roundToNearestPixel(px);
-
-// let pxRatio = PixelRatio.get();
-// let {win_width,win_height} = Dimensions.get("window");
-
-// let scale = 1/pxRatio;
-// let width = dp2px(win_width);
-// let height = dp2px(win_height);
+ 
 
 const styles = StyleSheet.create({
   container: {
@@ -211,11 +205,5 @@ const styles = StyleSheet.create({
 
 
 
-// width:width,
-// height:height,
-// transform:[{translateX:-width*.5},
-//             {translateY:-height*.5},
-//             {scale:scale},
-//             {translateX:width*.5},
-//             {translateY:height*.5}]
+
 export default PreTest

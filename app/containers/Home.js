@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { NativeModules, StyleSheet, Text, Image, View } from 'react-native'
-import { Button, Rating, Icon } from "react-native-elements";
+import { NativeModules, StyleSheet, Text, Image, View, ImageBackground } from 'react-native'
+import { Avatar, Button, Card, Divider, Icon } from "react-native-elements";
 import { connect } from 'react-redux'
 import SplashScreen from 'react-native-splash-screen'
 import LinearGradient from 'react-native-linear-gradient';
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { NavigationActions } from '../utils'
+import colors from '../config/colors';
 
 @connect()
 class Home extends Component {
@@ -29,11 +31,23 @@ class Home extends Component {
     }
   }
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      progress: 0,
+      fill:45,
+      indeterminate: true,
+    };
+  }
+
   componentDidMount() {
     // do stuff while splash screen is shown
       // After having done stuff (such as async tasks) hide the splash screen
       SplashScreen.hide();
+      
   }
+
   gotoReview = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'Review' }))
   }
@@ -46,121 +60,205 @@ class Home extends Component {
 
   render() {
     return (
+      <ImageBackground style={{ flex: 1 }}
+        source={require('../images/timg.jpg')}>
+
       <View style={styles.container}>
-      
-        <Button
-              title="Goto 单词"
-              onPress={this.gotoDetail}
-              titleStyle={{ fontWeight: 'bold', fontSize: 18 }}
-              ViewComponent={LinearGradient}
-              linearGradientProps={{
-                colors: ['#FF9800', '#F44336'],
-                start: { x:1, y: 0 },
-                end: { x: 0.2, y: 0 },
+      <View
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                marginHorizontal: 40,
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
-              buttonStyle={{
-                borderWidth: 0,
-                borderColor: 'transparent',
-                borderRadius: 20,
-              }}
-              containerStyle={{ marginVertical: 10, height: 40, width: 200 }}
-              icon={{
-                name: 'arrow-right',
-                type: 'font-awesome',
-                size: 15,
-                color: 'white',
-              }}
-              iconRight
-              iconContainerStyle={{ marginLeft: 10, marginRight: -10 }}
-            />
-        
-        <Button
-            title="Goto Product"
-            onPress={this.gotoProduct}
-            icon={{
-              name: 'home',
-              type: 'font-awesome',
-              size: 15,
-              color: 'white',
-            }}
-            iconContainerStyle={{ marginRight: 10 }}
-            titleStyle={{ fontWeight: '700' }}
-            buttonStyle={{
-              backgroundColor: 'rgba(90, 154, 230, 1)',
-              borderColor: 'transparent',
-              borderWidth: 0,
-              borderRadius: 30,
-            }}
-            containerStyle={{ width: 130 }}
-          />
-          <Button
-            title="打开原生界面"
-            onPress={() => NativeModules.ActivityStarter.navigateToExample()}
-            icon={{
-              name: 'user',
-              type: 'font-awesome',
-              size: 15,
-              color: 'white',
-            }}
-            iconRight
-            iconContainerStyle={{ marginLeft: 10 }}
-            titleStyle={{ fontWeight: '700' }}
-            buttonStyle={{
-              backgroundColor: 'rgba(199, 43, 98, 1)',
-              borderColor: 'transparent',
-              borderWidth: 0,
-              borderRadius: 30,
-            }}
-            containerStyle={{ marginVertical: 10, height: 40, width: 200 }}
-          />
-          <Button
-            title="打开原生播放器"
-            onPress={() => NativeModules.ActivityStarter.navigateToPlayer()}
-            buttonStyle={{ backgroundColor: 'rgba(39, 39, 39, 1)' }}
-            containerStyle={{ height: 40 }}
-            titleStyle={{ color: 'white', marginHorizontal: 20 }}
-          />
-          <Button
-            title="打开嵌入视频的原生页面"
-            onPress={() => NativeModules.ActivityStarter.navigateToVideo()}
-            containerStyle={{ marginVertical: 10, height: 40 }}
-            buttonStyle={{ backgroundColor: 'rgba(78, 116, 289, 1)' }}
-            titleStyle={{ color: 'white', marginHorizontal: 20 }}
-          />
-
-          <Button
-            title="开始复习"
-            onPress={this.gotoReview}
-            buttonStyle={{ backgroundColor: 'rgba(127, 220, 103, 1)' }}
-            containerStyle={{ height: 40 }}
-            titleStyle={{ color: 'white', marginHorizontal: 20 }}
-          />
-          <Button
-            title="提示升级"
-            onPress={() => NativeModules.ActivityStarter.navigateToUpdate()}
-            buttonStyle={{ backgroundColor: 'rgba(214, 61, 57, 1)' }}
-            containerStyle={{ marginVertical: 10, height: 40 }}
-            titleStyle={{ color: 'white', marginHorizontal: 20 }}
-          />
-          {/* <Button text="Goto Detail" onPress={this.gotoDetail} /> */}
-
-
-          <Text style={{ alignSelf: "center", marginTop: 10}}>背单词主页</Text>
-          <Rating
-              showRating
-              type="star"
-              fractions={1}
-              startingValue={3.6}
-              readonly
-              imageSize={40}
-              style={{ paddingVertical: 10 }}
-            />
-          <Button title="Copy to clipboard"
-            onPress={() => NativeModules.Clipboard.setString("Hello from JavaScript!")}
             >
-           </Button>
+              <Text
+                style={{
+                  flex: 1,
+                  fontSize: 40,
+                  color: '#4f4f4f',
+                  fontFamily: 'bold',
+                  textAlign: 'center',
+                }}
+              >
+                人教版（三-七年级上册）
+              </Text>
+        </View>
+        <View  style={{ flex:2,}}>
 
+        <AnimatedCircularProgress
+          size={360}
+          width={20}
+          duration={0}
+          backgroundWidth={30}
+          tintColor="#fff"
+          fill={100}
+          rotation={0}
+          backgroundColor="#CAF4D2"
+          style={{ position:'absolute' }}
+        />
+        <AnimatedCircularProgress
+            size={360}
+            width={25}
+            backgroundWidth={0}
+            fill={this.state.fill}
+            duration={0}
+            tintColor="#16CA4E"
+            backgroundColor="transparent"
+            rotation={0}
+            lineCap="round"
+            >
+              {
+                (fill) => (
+                
+                      <Text  style={{
+                        fontSize: 50,
+                        color: '#16CA4E',
+                        fontFamily: 'regular',
+                        lineHeight:50,
+                      }}>{ this.state.fill } %</Text>
+
+                )
+              }
+          </AnimatedCircularProgress>
+        </View>
+        <View style={{ flex:3,paddingTop: 30,}}>
+
+         <Card containerStyle={{borderRadius: 20, padding: 20, width: SCREEN_WIDTH - 120}} >
+          <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
+                  marginBottom: 10,
+                  height:180,
+                }}
+              >
+                <View
+                style={{
+                  flexDirection: 'column',
+                  justifyContent: 'space-around',
+                  
+                }}
+              >
+              <Text
+                style={{
+                  flex: 1,
+                  fontSize: 50,
+                  color: '#4f4f4f',
+                  fontFamily: 'bold',
+                  textAlign: 'center',
+                  lineHeight:100,
+                }}
+              >
+                190
+              </Text>
+              <Text
+                style={{
+                  flex: 1,
+                  fontSize: 36,
+                  color: 'gray',
+                  textAlign: 'center',
+                  marginVertical: 20
+                }}
+              >
+                需学总量
+              </Text>
+              </View>
+              <View style={{ width:1, height:100, marginTop: 30, backgroundColor: 'gray' }} />
+              <View
+                style={{
+                  flexDirection: 'column',
+                  justifyContent: 'space-around',
+                  
+                }}
+              >
+              <Text
+                style={{
+                  flex: 1,
+                  fontSize: 50,
+                  color: '#4f4f4f',
+                  fontFamily: 'bold',
+                  textAlign: 'center',
+                  lineHeight:100,
+                }}
+              >
+                300
+              </Text>
+              <Text
+                style={{
+                  flex: 1,
+                  fontSize: 36,
+                  color: 'gray',
+                  textAlign: 'center',
+                  marginVertical: 20
+                }}
+              >
+                词汇总量
+              </Text>
+              </View>
+              </View>
+            <Divider style={{ backgroundColor: 'gray' }} />
+            <View style={{ paddingTop: 30,}}>
+              
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
+                  marginBottom: 10,
+                }}
+              >
+                  <Avatar
+                    size="xlarge"
+                    onPress={this.gotoDetail}
+                    overlayContainerStyle={{backgroundColor: colors.grey1}}
+                    rounded
+                    icon={{name: 'book', color: 'rgba(127, 220, 103, 1)', type: 'font-awesome'}}
+                  />
+                  <Avatar
+                    size="xlarge"
+                    onPress={this.gotoReview}
+                    overlayContainerStyle={{backgroundColor: colors.grey1}}
+                    rounded
+                    icon={{name: 'rocket', color: 'orange', type: 'font-awesome'}}
+                  />
+
+              </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
+                  marginBottom: 10,
+                }}
+              >
+              <Text
+                style={{
+                  flex: 1,
+                  fontSize: 32,
+                  color: 'gray',
+                  textAlign: 'center',
+                }}
+              >
+                开始识记
+              </Text>
+              <Text
+                style={{
+                  flex: 1,
+                  fontSize: 32,
+                  color: 'gray',
+                  textAlign: 'center',
+                }}
+              >
+                开始学习
+              </Text>
+              </View>
+            </View>
+          </Card>
+
+
+           </View>
       </View>
+      </ImageBackground>
     )
   }
 }
