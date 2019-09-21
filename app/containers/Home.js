@@ -11,7 +11,7 @@ import colors from '../config/colors';
 @connect()
 class Home extends Component {
   static navigationOptions = {
-    tabBarLabel: '速记',
+    tabBarLabel: '识记',
     tabBarIcon: ({ focused, tintColor, horizontal }) => (
       <Icon
         name="home"
@@ -54,8 +54,8 @@ class Home extends Component {
   gotoDetail = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }))
   }
-  gotoProduct = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'Product' }))
+  gotoTest = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'Test' }))
   }
 
   render() {
@@ -112,7 +112,7 @@ class Home extends Component {
               {
                 (fill) => (
                 
-                      <Text  style={{
+                      <Text onPress={this.gotoTest} style={{
                         fontSize: 50,
                         color: '#16CA4E',
                         fontFamily: 'regular',
@@ -249,7 +249,7 @@ class Home extends Component {
                   textAlign: 'center',
                 }}
               >
-                开始学习
+                开始复习
               </Text>
               </View>
             </View>
@@ -268,6 +268,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+
   },
   icon: {
     width: 32,

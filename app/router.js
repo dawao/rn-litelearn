@@ -22,9 +22,17 @@ import Register from './containers/Register'
 import Setting from './containers/setting'
 import Home from './containers/Home'
 import Review from './containers/Review'
+import ReviewWord from './containers/ReviewWord'
 import PreTest from './containers/PreTest'
 import Account from './containers/Account'
 import Detail from './containers/Detail'
+import TestAll from './containers/TestAll'
+import TestReport from './containers/TestReport'
+import ToTest from './containers/ToTest'
+import Test from './containers/Test'
+import MyProfile from './containers/MyProfile'
+import About from './containers/About'
+import TextbookSelect from './containers/TextbookSelect'
 
 import ProductScreen from './containers/ProductScreen'
 import ProductDetailsScreen from './containers/ProductDetailsScreen'
@@ -52,7 +60,15 @@ const MainNavigator = createStackNavigator(
   {
     HomeNavigator: { screen: HomeNavigator },
     PreTest: { screen: PreTest },
+    TestAll: { screen: TestAll },
+    TestReport: { screen: TestReport },
+    ToTest: { screen: ToTest },
+    Test: { screen: Test },
+    TextbookSelect: { screen: TextbookSelect },
+    About: { screen: About },
+    MyProfile: { screen: MyProfile },
     Review: { screen: Review },
+    ReviewWord: { screen: ReviewWord },
     Detail: { screen: Detail },
     Product: ProductScreen,
     ProductDetails: ProductDetailsScreen,

@@ -1,45 +1,15 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Image, FlatList } from 'react-native'
+import { TouchableOpacity, StyleSheet, Text, Image, View, ImageBackground } from 'react-native'
+import { Avatar, Button, Card, ListItem, Icon } from "react-native-elements";
 import { connect } from 'react-redux'
-import { Button, ListItem, Icon } from "react-native-elements";
+import SplashScreen from 'react-native-splash-screen'
 
-import { createAction, NavigationActions } from '../utils'
+import { NavigationActions } from '../utils'
+import colors from '../config/colors';
 
-const list1 = [
-  {
-    title: '个人信息',
-    icon: 'av-timer',
-  },
-  {
-    title: '课程信息',
-    icon: 'flight-takeoff',
-  },
-  {
-    title: '测验信息',
-    icon: 'lightbulb-outline',
-  },
-  {
-    title: '统计信息',
-    icon: 'track-changes',
-  },
-];
-const log = () => console.log('this is an example method');
-const renderRow = ({ item }) => {
-  return (
-    <ListItem
-      onPress={log}
-      title={item.title}
-      leftIcon={{ name: item.icon }}
-      chevron
-      bottomDivider
-    />
-  );
-};
-
-@connect(({ app }) => ({ ...app }))
+@connect()
 class Account extends Component {
   static navigationOptions = {
-    title: '测试',
     tabBarLabel: '我的',
     tabBarIcon: ({ focused, tintColor, horizontal }) => (
       <Icon
@@ -60,36 +30,169 @@ class Account extends Component {
     }
   }
 
-  /* <Image
-      style={[styles.icon, { tintColor: focused ? tintColor : 'gray' }]}
-      source={require('../images/person.png')}
-    /> */
-  gotoLogin = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'LoginScreen' }))
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      progress: 0,
+      fill:45,
+      indeterminate: true,
+    };
   }
 
-  logout = () => {
-    this.props.dispatch(createAction('app/logout')())
+  componentDidMount() {
+    // do stuff while splash screen is shown
+      // After having done stuff (such as async tasks) hide the splash screen
+      SplashScreen.hide();
+      
+  }
+
+  gotoMyProfile = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'MyProfile' }))
+  }
+  gotoDetail = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }))
+  }
+  gotoProduct = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'Product' }))
   }
 
   render() {
-    const { login } = this.props
     return (
+
+
       <View style={styles.container}>
-    
-      <View style={styles.list}>
-        <FlatList
-          data={list1}
-          keyExtractor={a => a.title}
-          renderItem={renderRow}
-        />
+        <ImageBackground style={{ flex: 1, width: global.SCREEN_WIDTH,  height: 450, }}
+              source={require('../images/gb.jpg')}>
+          <View style={[styles.container,{marginTop:60 ,backgroundColor:'transparent'}]}>
+            <Avatar
+                    size="xlarge"
+                    onPress={this.gotoDetail}
+                    overlayContainerStyle={{backgroundColor: colors.grey1}}
+                    rounded
+                    icon={{name: 'rocket', color: 'orange', type: 'font-awesome'}}
+                  />
+
+            <Text
+                style={{
+                  fontSize: 46,
+                  color: '#fff',
+                  fontFamily: 'bold',
+                  textAlign: 'center',
+                  marginTop: 20,
+                  marginBottom: 10,
+                }}
+              >
+                王琳琳
+            </Text>
+            <TouchableOpacity onPress={this.gotoMyProfile}>
+            <Text
+                style={{
+                  fontSize: 32,
+                  color: '#fff',
+                  textAlign: 'center',
+                }}
+              >
+                完善个人资料&nbsp;&nbsp;>
+              </Text></TouchableOpacity>
+          </View>
+          <View style={{flex:2}}>
+            <Card containerStyle={{borderWidth:0,borderRadius: 10, marginBottom: 20, marginLeft: 40, padding: 15, width: SCREEN_WIDTH - 80}} >
+            <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-around',
+                    marginBottom: 0,paddingTop:20,
+  height:170
+                  }}
+                >
+                  <View
+                  style={{
+                    flexDirection: 'column',
+                    justifyContent: 'space-around',
+                    
+                  }}
+                >
+                <Icon
+  size={80}
+  name='map-o'
+  type='font-awesome'
+  color='orange'
+  onPress={() => console.log('hello')} />
+              <Text
+                style={{
+                  flex: 1,
+                  fontSize: 36,
+                  color: 'gray',
+                  textAlign: 'center',
+                  marginVertical: 10
+                }}
+              >
+                真题测试
+              </Text>
+              </View>
+              <View style={{ width:1, height:100, marginTop: 30, backgroundColor: 'gray' }} />
+              <View
+                style={{
+                  flexDirection: 'column',
+                  justifyContent: 'space-around',
+
+                }}
+              >
+              <Icon
+  size={80}
+  name='calendar-check-o'
+  type='font-awesome'
+  color='#43ADFF'
+  onPress={() => console.log('hello')} />
+              <Text
+                style={{
+                  flex: 1,
+                  fontSize: 36,
+                  color: 'gray',
+                  textAlign: 'center',
+                  marginVertical: 10
+                }}
+              >
+                结业测试
+              </Text>
+              </View>
+              </View>
+            
+          </Card>
+          <View style={{  marginVertical: 10 }} >
+            <ListItem containerStyle={{borderWidth:0,borderRadius: 10, marginLeft: 40, padding: 20, width: SCREEN_WIDTH - 80}}
+              title={'课程信息'}
+              titleStyle={{  fontSize: 32 }}
+              leftIcon={{ name: 'book',size: 38,color:'#17CA4F',type:'font-awesome' }}
+              chevron={{ size: 36  }}
+              
+            />
+            </View>
+            <View style={{  marginVertical: 10 }} >
+            <ListItem containerStyle={{borderWidth:0,borderRadius: 10, marginLeft: 40, padding: 20, width: SCREEN_WIDTH - 80}}
+              title={'测试报告'}
+              titleStyle={{ fontSize: 32 }}
+              leftIcon={{ name: 'file-text-o',size: 38,color:'#17CA4F',type:'font-awesome' }}
+              chevron={{ size: 36  }}
+            />
+            </View>
+            <View style={{  marginVertical: 10 }} >
+              <ListItem containerStyle={{borderWidth:0, borderRadius: 10, marginLeft: 40, padding: 20, width: SCREEN_WIDTH - 80}} 
+                title={'设置'}
+                titleStyle={{  fontSize: 32 }}
+                leftIcon={{ name: 'cog',size: 38, color:'#17CA4F',type:'font-awesome' }}
+                chevron={{ size: 36  }}
+              />
+            </View>
+          </View>
+        </ImageBackground>
+        {/* 
+            <Image style={{ flex: 1 }}
+              source={require('../images/account.png')}></Image>
+        </TouchableOpacity> */}
       </View>
-        {login ? (
-          <Button title="退出系统" onPress={this.logout} />
-        ) : (
-          <Button title="Goto Login" onPress={this.gotoLogin} />
-        )}
-      </View>
+   
     )
   }
 }
@@ -99,16 +202,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    width: global.SCREEN_WIDTH,
+    height: global.SCREEN_HEIGHT,
+    backgroundColor: colors.grey1,
   },
   icon: {
     width: 32,
     height: 32,
-  },
-  list: {
-    marginTop: 20,
-    borderTopWidth: 1,
-    backgroundColor: '#fff',
-    width: '100%',
   },
 })
 

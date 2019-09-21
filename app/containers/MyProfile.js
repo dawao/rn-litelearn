@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
-import { ScrollView, StyleSheet,Text, View, ActivityIndicator, TouchableOpacity  } from 'react-native'
+import { TouchableOpacity, StyleSheet,Text, View, ActivityIndicator, Dimensions  } from 'react-native'
 import { connect } from 'react-redux'
 
 import SignatureCapture from 'react-native-signature-capture';
 import * as Progress from 'react-native-progress';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { Input, Button, Icon, Image } from 'react-native-elements';
-
+import Swiper from 'react-native-swiper'
 import { NavigationActions, createAction } from '../utils'
 import { Pie } from '../components'
 
 
 @connect(({ app }) => ({ ...app }))
-class Detail extends Component {
+class MyProfile extends Component {
 
   static navigationOptions = {
     title: '测试',
@@ -33,12 +33,9 @@ class Detail extends Component {
 
   }
   
-  
-  goBack = () => {
-    this.props.dispatch(NavigationActions.back({ routeName: 'Account' }))
-  }
-  goTest = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'ToTest' }))
+
+  goAccount = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'Account' }))
   }
   goql = () => {
     this.props.dispatch(createAction('app/queryGraph')({ql:GET_PRODUCTS}))
@@ -46,37 +43,53 @@ class Detail extends Component {
 
 
   render() {
-
+    const { navigation } = this.props;
     return (
-      <View style={styles.container}>
+      <Swiper showsButtons={true} loop={false}>
+      {/* <View style={styles.container}>
         
-        <ScrollView horizontal pagingEnabled decelerationRate={0.993}>
+        <ScrollView horizontal pagingEnabled decelerationRate={0.993}> */}
+      
         <Image style={{ marginTop: -40,}}
-          source={require('../images/51.png')}
+          source={require('../images/m2.png')}
+
+          PlaceholderContent={<ActivityIndicator />}
+        />
+        <Image style={{ marginTop: -40,}}
+          source={require('../images/m3.png')}
+
+          PlaceholderContent={<ActivityIndicator />}
+        />
+        <Image style={{ marginTop: -40,}}
+          source={require('../images/m4.png')}
+
+          PlaceholderContent={<ActivityIndicator />}
+        />
+        <Image style={{ marginTop: -40,}}
+          source={require('../images/m5.png')}
  
-          PlaceholderContent={<ActivityIndicator />}
-        />
-        <Image style={{ marginTop: -40,}}
-          source={require('../images/52.png')}
-
-          PlaceholderContent={<ActivityIndicator />}
-        />
-        <Image style={{ marginTop: -40,}}
-          source={require('../images/53.png')}
-
           PlaceholderContent={<ActivityIndicator />}
         />
 
         <View style={styles.container}>
-          <TouchableOpacity onPress={this.goTest}>
-          <Image style={{ marginTop: -40,}}
-          source={require('../images/54.png')}
-          PlaceholderContent={<ActivityIndicator />}
-        />
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.goBack(null)}>
+            <Image style={{ marginTop: -30,}}
+              source={require('../images/m6.png')}
+              PlaceholderContent={<ActivityIndicator />}
+            />
+            </TouchableOpacity>
         </View>
-        </ScrollView>
-      </View>
+        <View style={styles.container}>
+            <TouchableOpacity onPress={this.goAccount}>
+            <Image style={{ marginTop: -30,}}
+              source={require('../images/m7.png')}
+              PlaceholderContent={<ActivityIndicator />}
+            />
+            </TouchableOpacity>
+        </View>
+       {/* </ScrollView>
+      </View> */}
+      </Swiper>
     )
   }
 }
@@ -107,4 +120,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Detail
+export default MyProfile

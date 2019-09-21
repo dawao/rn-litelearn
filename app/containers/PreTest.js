@@ -21,14 +21,17 @@ class PreTest extends Component {
       // After having done stuff (such as async tasks) hide the splash screen
       SplashScreen.hide();
   }
-  gotoReview = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'Review' }))
+  gotoTestAll = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'TestAll' }))
   }
   gotoHome = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'Home' }))
   }
   gotoLogin = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'LoginScreen' }))
+  }
+  gotoTextbookSelect = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'TextbookSelect' }))
   }
 
   render() {
@@ -82,7 +85,7 @@ class PreTest extends Component {
               <ListItem
                 title="已选教材"
                 titleStyle={{ fontWeight: 'bold', fontSize: 40 }}
-                badge={{ value: '选择教材', textStyle:{fontSize: 32} ,badgeStyle:{ borderRadius: 50, marginVertical: 10, height: 50, width: 150 }}}
+                badge={{  onPress:this.gotoTextbookSelect, value: '选择教材', textStyle:{fontSize: 32} ,badgeStyle:{ borderRadius: 50, marginVertical: 10, height: 50, width: 150 }}}
                 bottomDivider
               />
               <ListItem title="未选" titleStyle={{ color: '#737373', fontSize: 36 }} checkmark  />
@@ -99,7 +102,7 @@ class PreTest extends Component {
           >
           <Button
             title="水平测试"
-            onPress={this.gotoReview}
+            onPress={this.gotoTestAll}
             titleStyle={{ fontWeight: 'bold', fontSize: 38 }}
             ViewComponent={LinearGradient}
             linearGradientProps={{

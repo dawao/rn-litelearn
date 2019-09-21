@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
-import { ScrollView, StyleSheet,Text, View, ActivityIndicator, TouchableOpacity  } from 'react-native'
+import { TouchableOpacity, StyleSheet,Text, View, ActivityIndicator, Dimensions  } from 'react-native'
 import { connect } from 'react-redux'
 
 import SignatureCapture from 'react-native-signature-capture';
 import * as Progress from 'react-native-progress';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { Input, Button, Icon, Image } from 'react-native-elements';
-
+import Swiper from 'react-native-swiper'
 import { NavigationActions, createAction } from '../utils'
 import { Pie } from '../components'
 
 
 @connect(({ app }) => ({ ...app }))
-class Detail extends Component {
+class TestReport extends Component {
 
   static navigationOptions = {
     title: '测试',
@@ -35,48 +35,27 @@ class Detail extends Component {
   
   
   goBack = () => {
-    this.props.dispatch(NavigationActions.back({ routeName: 'Account' }))
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'PreTest' }))
   }
-  goTest = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'ToTest' }))
-  }
+
   goql = () => {
     this.props.dispatch(createAction('app/queryGraph')({ql:GET_PRODUCTS}))
   }
 
 
   render() {
-
+    const { navigation } = this.props;
     return (
-      <View style={styles.container}>
-        
-        <ScrollView horizontal pagingEnabled decelerationRate={0.993}>
-        <Image style={{ marginTop: -40,}}
-          source={require('../images/51.png')}
- 
-          PlaceholderContent={<ActivityIndicator />}
-        />
-        <Image style={{ marginTop: -40,}}
-          source={require('../images/52.png')}
-
-          PlaceholderContent={<ActivityIndicator />}
-        />
-        <Image style={{ marginTop: -40,}}
-          source={require('../images/53.png')}
-
-          PlaceholderContent={<ActivityIndicator />}
-        />
 
         <View style={styles.container}>
-          <TouchableOpacity onPress={this.goTest}>
-          <Image style={{ marginTop: -40,}}
-          source={require('../images/54.png')}
-          PlaceholderContent={<ActivityIndicator />}
-        />
-          </TouchableOpacity>
+            <TouchableOpacity onPress={this.goBack}>
+            <Image style={{ marginTop: -50,}}
+              source={require('../images/report.png')}
+              PlaceholderContent={<ActivityIndicator />}
+            />
+            </TouchableOpacity>
         </View>
-        </ScrollView>
-      </View>
+
     )
   }
 }
@@ -107,4 +86,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Detail
+export default TestReport
