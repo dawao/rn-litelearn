@@ -12,7 +12,7 @@ import { Pie } from '../components'
 
 
 @connect(({ app }) => ({ ...app }))
-class MyProfile extends Component {
+class GrammarTest extends Component {
 
   static navigationOptions = {
     title: '测试',
@@ -34,8 +34,8 @@ class MyProfile extends Component {
   }
   
 
-  goAccount = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'Account' }))
+  goReport = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'TestReport' }))
   }
   goql = () => {
     this.props.dispatch(createAction('app/queryGraph')({ql:GET_PRODUCTS}))
@@ -50,22 +50,16 @@ class MyProfile extends Component {
         
         <ScrollView horizontal pagingEnabled decelerationRate={0.993}> */}
       
+
         <View style={styles.container}>
             <TouchableOpacity onPress={() => navigation.goBack(null)}>
-            <Image style={{ marginTop: -30,}}
-              source={require('../images/m2.png')}
+            <Image style={{ marginTop: -50,}}
+              source={require('../images/t8.png')}
               PlaceholderContent={<ActivityIndicator />}
             />
             </TouchableOpacity>
         </View>
-        <View style={styles.container}>
-            <TouchableOpacity onPress={this.goAccount}>
-            <Image style={{ marginTop: -30,}}
-              source={require('../images/m3.png')}
-              PlaceholderContent={<ActivityIndicator />}
-            />
-            </TouchableOpacity>
-        </View>
+
        {/* </ScrollView>
       </View> */}
       </Swiper>
@@ -99,4 +93,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default MyProfile
+export default GrammarTest

@@ -63,10 +63,12 @@ class Review extends Component {
       
 
       <View style={styles.container}>
+
       <TouchableOpacity onPress={this.gotoReviewWord}>
       <Image style={{ flex: 1 }}
         source={require('../images/review.png')}></Image>
       </TouchableOpacity>
+
       </View>
 
     )

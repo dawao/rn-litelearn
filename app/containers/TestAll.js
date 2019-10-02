@@ -75,16 +75,11 @@ class TestAll extends Component {
 
           PlaceholderContent={<ActivityIndicator />}
         />
-        <Image style={{ marginTop: -50,}}
-          source={require('../images/t5.png')}
- 
-          PlaceholderContent={<ActivityIndicator />}
-        />
 
         <View style={styles.container}>
             <TouchableOpacity onPress={() => navigation.goBack(null)}>
             <Image style={{ marginTop: -50,}}
-              source={require('../images/t8.png')}
+              source={require('../images/t5.png')}
               PlaceholderContent={<ActivityIndicator />}
             />
             </TouchableOpacity>

@@ -12,7 +12,7 @@ import { Pie } from '../components'
 
 
 @connect(({ app }) => ({ ...app }))
-class MyProfile extends Component {
+class Setup extends Component {
 
   static navigationOptions = {
     title: '测试',
@@ -40,7 +40,9 @@ class MyProfile extends Component {
   goql = () => {
     this.props.dispatch(createAction('app/queryGraph')({ql:GET_PRODUCTS}))
   }
-
+  gotoLogin = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'LoginScreen' }))
+  }
 
   render() {
     const { navigation } = this.props;
@@ -50,18 +52,20 @@ class MyProfile extends Component {
         
         <ScrollView horizontal pagingEnabled decelerationRate={0.993}> */}
       
+
+
         <View style={styles.container}>
-            <TouchableOpacity onPress={() => navigation.goBack(null)}>
-            <Image style={{ marginTop: -30,}}
-              source={require('../images/m2.png')}
+            <TouchableOpacity onPress={this.gotoLogin}>
+            <Image style={{ marginTop: -10,}}
+              source={require('../images/m7.png')}
               PlaceholderContent={<ActivityIndicator />}
             />
             </TouchableOpacity>
         </View>
         <View style={styles.container}>
             <TouchableOpacity onPress={this.goAccount}>
-            <Image style={{ marginTop: -30,}}
-              source={require('../images/m3.png')}
+            <Image style={{ marginTop: -10,}}
+              source={require('../images/m8.png')}
               PlaceholderContent={<ActivityIndicator />}
             />
             </TouchableOpacity>
@@ -99,4 +103,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default MyProfile
+export default Setup

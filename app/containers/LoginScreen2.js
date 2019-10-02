@@ -21,7 +21,7 @@ import { createAction, NavigationActions } from '../utils'
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
-const BG_IMAGE = require('../images/bg_screen4.jpg');
+const BG_IMAGE = require('../images/login.png');//bg_screen4.jpg
 
 // Enable LayoutAnimation on Android
 UIManager.setLayoutAnimationEnabledExperimental &&
@@ -352,12 +352,13 @@ const styles = StyleSheet.create({
     top: -5,
     borderRightWidth: 70,
     borderBottomWidth: 70,
-    borderColor: 'white',
-    backgroundColor: 'white',
+    borderColor: 'transparent',//'white',
+    backgroundColor: 'transparent',//'white',
   },
   loginContainer: {
     alignItems: 'center',
     justifyContent: 'center',
+    marginLeft: 700
   },
   loginTextButton: {
     fontSize: 16,
@@ -368,7 +369,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(232, 147, 142, 1)',
     borderRadius: 10,
     height: 50,
-    width: 200,
+    width: 20,
   },
   titleContainer: {
     height: 150,
@@ -376,8 +377,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   formContainer: {
-    backgroundColor: 'white',
-    width: SCREEN_WIDTH - 30,
+    backgroundColor: 'transparent',//'white',
+    width: SCREEN_WIDTH - 30 -700,
     borderRadius: 10,
     paddingTop: 32,
     paddingBottom: 32,
@@ -386,7 +387,7 @@ const styles = StyleSheet.create({
   loginText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: 'white',
+    color: 'transparent',//'white',
   },
   bgImage: {
     flex: 1,
@@ -399,7 +400,7 @@ const styles = StyleSheet.create({
   },
   categoryText: {
     textAlign: 'center',
-    color: 'white',
+    color: 'transparent',//'white',
     fontSize: 24,
     fontFamily: 'light',
     backgroundColor: 'transparent',
@@ -409,7 +410,7 @@ const styles = StyleSheet.create({
     opacity: 1,
   },
   titleText: {
-    color: 'white',
+    color: 'transparent',//'white',
     fontSize: 30,
     fontFamily: 'regular',
   },

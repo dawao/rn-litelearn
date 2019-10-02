@@ -50,6 +50,22 @@ class Account extends Component {
   gotoMyProfile = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'MyProfile' }))
   }
+  gotoUnderstand = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'Understand' }))
+  }
+  gotoMyClass = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'MyClass' }))
+  }
+  gotoMyResult = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'MyResult' }))
+  }
+  gotoSetup = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'Setup' }))
+  }
+  gotoGrammarTest = () => {
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'GrammarTest' }))
+  }
+
   gotoDetail = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }))
   }
@@ -114,11 +130,37 @@ class Account extends Component {
                   }}
                 >
                 <Icon
+                  size={80}
+                  name='map-o'
+                  type='font-awesome'
+                  color='orange'
+                  onPress={this.gotoGrammarTest} />
+                <Text
+                  style={{
+                    flex: 1,
+                    fontSize: 36,
+                    color: 'gray',
+                    textAlign: 'center',
+                    marginVertical: 10
+                  }}
+                >
+                  语法测试
+                </Text>
+              </View>
+
+              <View
+                  style={{
+                    flexDirection: 'column',
+                    justifyContent: 'space-around',
+                    
+                  }}
+                >
+                <Icon
   size={80}
-  name='map-o'
+  name='file-text'
   type='font-awesome'
-  color='orange'
-  onPress={() => console.log('hello')} />
+  color='#17CA4F'
+  onPress={this.gotoUnderstand} />
               <Text
                 style={{
                   flex: 1,
@@ -128,10 +170,10 @@ class Account extends Component {
                   marginVertical: 10
                 }}
               >
-                真题测试
+                阅读理解
               </Text>
               </View>
-              <View style={{ width:1, height:100, marginTop: 30, backgroundColor: 'gray' }} />
+             {/*  <View style={{ width:1, height:100, marginTop: 30, backgroundColor: 'gray' }} /> */}
               <View
                 style={{
                   flexDirection: 'column',
@@ -140,11 +182,11 @@ class Account extends Component {
                 }}
               >
               <Icon
-  size={80}
-  name='calendar-check-o'
-  type='font-awesome'
-  color='#43ADFF'
-  onPress={() => console.log('hello')} />
+                size={80}
+                name='calendar-check-o'
+                type='font-awesome'
+                color='#43ADFF'
+                onPress={() => console.log('hello')} />
               <Text
                 style={{
                   flex: 1,
@@ -166,7 +208,7 @@ class Account extends Component {
               titleStyle={{  fontSize: 32 }}
               leftIcon={{ name: 'book',size: 38,color:'#17CA4F',type:'font-awesome' }}
               chevron={{ size: 36  }}
-              
+              onPress={this.gotoMyClass}
             />
             </View>
             <View style={{  marginVertical: 10 }} >
@@ -175,6 +217,7 @@ class Account extends Component {
               titleStyle={{ fontSize: 32 }}
               leftIcon={{ name: 'file-text-o',size: 38,color:'#17CA4F',type:'font-awesome' }}
               chevron={{ size: 36  }}
+              onPress={this.gotoMyResult}
             />
             </View>
             <View style={{  marginVertical: 10 }} >
@@ -183,6 +226,7 @@ class Account extends Component {
                 titleStyle={{  fontSize: 32 }}
                 leftIcon={{ name: 'cog',size: 38, color:'#17CA4F',type:'font-awesome' }}
                 chevron={{ size: 36  }}
+                onPress={this.gotoSetup}
               />
             </View>
           </View>

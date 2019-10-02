@@ -12,7 +12,7 @@ import { Pie } from '../components'
 
 
 @connect(({ app }) => ({ ...app }))
-class MyProfile extends Component {
+class Understand extends Component {
 
   static navigationOptions = {
     title: '测试',
@@ -50,10 +50,16 @@ class MyProfile extends Component {
         
         <ScrollView horizontal pagingEnabled decelerationRate={0.993}> */}
       
+        <Image style={{ marginTop: -40,}}
+          source={require('../images/a01.png')}
+          PlaceholderContent={<ActivityIndicator />}
+        />
+
+
         <View style={styles.container}>
             <TouchableOpacity onPress={() => navigation.goBack(null)}>
             <Image style={{ marginTop: -30,}}
-              source={require('../images/m2.png')}
+              source={require('../images/a02.png')}
               PlaceholderContent={<ActivityIndicator />}
             />
             </TouchableOpacity>
@@ -61,7 +67,7 @@ class MyProfile extends Component {
         <View style={styles.container}>
             <TouchableOpacity onPress={this.goAccount}>
             <Image style={{ marginTop: -30,}}
-              source={require('../images/m3.png')}
+              source={require('../images/a03.png')}
               PlaceholderContent={<ActivityIndicator />}
             />
             </TouchableOpacity>
@@ -99,4 +105,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default MyProfile
+export default Understand

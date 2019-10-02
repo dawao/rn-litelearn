@@ -12,7 +12,7 @@ import { Pie } from '../components'
 
 
 @connect(({ app }) => ({ ...app }))
-class MyProfile extends Component {
+class MyResult extends Component {
 
   static navigationOptions = {
     title: '测试',
@@ -53,19 +53,12 @@ class MyProfile extends Component {
         <View style={styles.container}>
             <TouchableOpacity onPress={() => navigation.goBack(null)}>
             <Image style={{ marginTop: -30,}}
-              source={require('../images/m2.png')}
+              source={require('../images/m6.png')}
               PlaceholderContent={<ActivityIndicator />}
             />
             </TouchableOpacity>
         </View>
-        <View style={styles.container}>
-            <TouchableOpacity onPress={this.goAccount}>
-            <Image style={{ marginTop: -30,}}
-              source={require('../images/m3.png')}
-              PlaceholderContent={<ActivityIndicator />}
-            />
-            </TouchableOpacity>
-        </View>
+
        {/* </ScrollView>
       </View> */}
       </Swiper>
@@ -99,4 +92,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default MyProfile
+export default MyResult

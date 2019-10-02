@@ -31,6 +31,11 @@ import TestReport from './containers/TestReport'
 import ToTest from './containers/ToTest'
 import Test from './containers/Test'
 import MyProfile from './containers/MyProfile'
+import MyClass from './containers/MyClass'
+import MyResult from './containers/MyResult'
+import Understand from './containers/Understand'
+import GrammarTest from './containers/GrammarTest'
+import Setup from './containers/Setup'
 import About from './containers/About'
 import TextbookSelect from './containers/TextbookSelect'
 
@@ -67,6 +72,11 @@ const MainNavigator = createStackNavigator(
     TextbookSelect: { screen: TextbookSelect },
     About: { screen: About },
     MyProfile: { screen: MyProfile },
+    MyClass: { screen: MyClass },
+    Setup: { screen: Setup },
+    MyResult: { screen: MyResult },
+    Understand: { screen: Understand },
+    GrammarTest: { screen: GrammarTest },
     Review: { screen: Review },
     ReviewWord: { screen: ReviewWord },
     Detail: { screen: Detail },
